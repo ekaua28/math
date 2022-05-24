@@ -1,6 +1,14 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject} from "rxjs";
 
+/**
+ * HistoryService to store result and expression that was executed
+ * used 3 method, get, add, and clean
+ *
+ * get: getResultHistory$ to get Observable
+ * add: addResultHistory$ to add new value
+ * clean: cleanResultHistory$ to clean store
+ */
 @Injectable({
   providedIn: 'root'
 })

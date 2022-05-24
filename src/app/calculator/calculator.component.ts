@@ -6,6 +6,9 @@ import {RandomService} from "../services/random.service";
 import {Observable} from "rxjs";
 import {HistoryService} from "../services/history.service";
 
+/**
+ * Component for rendering calculator
+ */
 @Component({
   selector: 'app-calculator',
   templateUrl: './calculator.component.html',
@@ -13,10 +16,25 @@ import {HistoryService} from "../services/history.service";
 })
 export class CalculatorComponent implements OnInit {
 
+  /**
+   * currentNumber variable helper used for, for detection current number
+   */
   currentNumber = "";
+  /**
+   * variable for expresion
+   */
   expresion = "";
+  /**
+   * variable for result
+   */
   result = "";
+  /**
+   * Form for calculator
+   */
   basicForm: FormGroup;
+  /**
+   * Observable for getting random number from random service
+   */
   randomNumber$: Observable<number>;
 
   constructor(private fb: FormBuilder, private randomService: RandomService, private historyService: HistoryService) {
@@ -28,32 +46,54 @@ export class CalculatorComponent implements OnInit {
   }
 
   ngAfterViewInit() {
+    /*
+      Added subscribe to detect random number and used in expresion
+     */
     this.randomNumber$.subscribe(num => {
-      num && this.getNumber(num.toString());
+      num && this.setNumber(num.toString());
     })
   }
 
+  /**
+   * Creating form, and describe validation for field 'expresion' CustomValidationService.MathExpresionValidation
+   */
   createForm() {
     this.basicForm = this.fb.group({
       expresion: ['', Validators.compose([Validators.required, CustomValidationService.MathExpresionValidation])]
     });
   }
 
-  getNumber(num: string) {
+  /**
+   * Function setter, added number to expression
+   * @param num number in sting type
+   */
+  setNumber(num: string) {
     this.currentNumber += num;
     this.expresion += num;
   }
 
-  getTrigonometry(trigonometry: string) {
+  /**
+   * Function setter, added trigonometry operation to expression, by default added with 0
+   * @param trigonometry operation
+   */
+  setTrigonometry(trigonometry: string) {
     this.currentNumber = "";
     this.expresion += trigonometry + "(0)";
   }
 
-  getOperation(op: string) {
+  /**
+   * Function setter, added math operation to expression
+   * @param op math operation what will be added to expression
+   */
+  setOperation(op: string) {
     this.expresion += op;
     this.currentNumber = ""
   }
 
+  /**
+   * Function setter, added possibility use decimal number in expression.
+   * In case if dot was clicked first, added 0 on begin.
+   */
   getDecimal() {
     if (!this.currentNumber.includes('.')) {
       if (this.currentNumber) {
@@ -67,17 +107,26 @@ export class CalculatorComponent implements OnInit {
     }
   }
 
+  /**
+   * Evaluating function, also store expresion and result of that
+   */
   evaluate() {
     this.result = CalculationService.Evaluate(this.expresion);
     this.historyService.addResultHistory$(this.expresion + "=" + this.result);
   }
 
+  /**
+   * Clean expresion and last result
+   */
   clear() {
     this.currentNumber = "";
     this.expresion = "";
     this.result = "";
   }
 
+  /**
+   * get random number from service
+   */
   random() {
     this.randomService.fetchNumber();
   }
