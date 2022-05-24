@@ -1,0 +1,37 @@
+.history{
+  display: flex;
+  flex-direction: column;
+  margin: 1em;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border: 1px solid #c4c4c4;
+  @media (min-width: 1024px) {
+    width: 320px;
+    border-radius: 5px;
+    margin: 0 1em;
+    padding: 1em;
+  }
+
+  h1{
+    margin-bottom: 0;
+  }
+
+  .result{
+    padding: 1em;
+  }
+
+  .all-clear {
+    background-color: #f0595f;
+    border-color: #b0353a;
+    color: #fff;
+    height: 30px;
+    border-radius: 3px;
+    font-size: 1rem;
+    margin: 1em;
+
+    &:hover {
+      background-color: #f17377;
+    }
+  }
+}

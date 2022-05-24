@@ -1,0 +1,8 @@
+<div class="history">
+  <h2>Result History:</h2>
+  <div class="result" *ngFor="let item of (resultHistory$ | async)">
+    {{ item }}
+  </div>
+  <div class="result" *ngIf="isEmpty">history empty</div>
+  <button *ngIf="!isEmpty" type="button" (click)="clear()" class="all-clear" value="all-clear">Clean history</button>
+</div>

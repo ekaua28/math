@@ -1,0 +1,129 @@
+
+.calculator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 1em;
+  width: 100%;
+  @media (min-width: 1024px) {
+    width: 320px;
+    border: 1px solid #c4c4c4;
+    border-radius: 5px;
+  }
+}
+
+.calculator-screen {
+  font-size: 2.5rem;
+  height: 50px;
+  border: 2px solid #252525;
+  background-color: #252525;
+  color: #fff;
+  text-align: right;
+  padding-right: 20px;
+  padding-left: 10px;
+}
+
+.form-group {
+  display: flex;
+  margin-bottom: 1em;
+  flex-direction: column;
+  width: 100%;
+  @media (max-width: 1024px) {
+    width: calc(100% - 2em);
+  }
+}
+
+.expresion-screen {
+  font-size: 2.5rem;
+  height: 50px;
+  border: 2px solid #c4c4c4;
+  text-align: left;
+  padding-right: 10px;
+  padding-left: 20px;
+
+  &.error {
+    border-color: #f0595f;
+  }
+}
+
+.error-message {
+  color: #f0595f;
+}
+
+.calculator-keys {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+  @media (max-width: 1024px) {
+    width: calc(100% - 2em);
+  }
+  @media (min-width: 1024px) {
+    width: 100%;
+  }
+}
+
+button {
+  height: 60px;
+  background-color: #ffffff;
+  border-radius: 3px;
+  border: 1px solid #c4c4c4;
+  background-color: transparent;
+  font-size: 2rem;
+  color: #333;
+
+  &:hover {
+    background-color: #eaeaea;
+  }
+}
+
+.operator {
+  color: #337cac;
+}
+
+.all-clear {
+  background-color: #f0595f;
+  border-color: #b0353a;
+  color: #fff;
+
+  &:hover {
+    background-color: #f17377;
+  }
+}
+
+.cos-sign {
+  grid-area: 2 / 4 / 6 / 5;
+}
+
+.sin-sign {
+  grid-area: 3 / 4 / 6 / 5;
+}
+
+.tan-sign {
+  grid-area: 4 / 4 / 6 / 5;
+}
+
+.random {
+  background-color: #FFCC00;
+  border-color: #e7a900;
+  grid-column: 1 / -1;
+  &:hover {
+    background-color: #ffe80a;
+  }
+}
+
+.equal-sign {
+  background-color: #2e86c0;
+  border-color: #337cac;
+  color: #fff;
+  grid-area: 5 / 4 / 6 / 5;
+
+  &:hover {
+    background-color: #4e9ed4;
+  }
+
+  &:disabled {
+    border-color: #c4c4c4;
+    background-color: #c4c4c4;
+  }
+}

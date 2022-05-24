@@ -1,0 +1,57 @@
+
+
+  <form class="calculator" [formGroup]="basicForm" novalidate>
+    <div class="form-group">
+      <input class="form-control expresion-screen"
+             placeholder="Expresion" formControlName="expresion"
+             [(ngModel)]="expresion">
+      <div class="error-message" *ngIf="basicForm.get('expresion').hasError('MathExpresionValidation')">
+        Math expresion invalidation
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input type="text" placeholder="Result" class="calculator-screen" [value]="result" disabled/>
+    </div>
+
+
+    <div class="calculator-keys">
+
+      <button type="button" (click)="getOperation('+')" class="operator" value="+">+</button>
+      <button type="button" (click)="getOperation('-')" class="operator" value="-">-</button>
+      <button type="button" (click)="getOperation('*')" class="operator" value="*">&times;</button>
+      <button type="button" (click)="getOperation('/')" class="operator" value="/">&divide;</button>
+
+      <button type="button" (click)="getTrigonometry('sin')" class="operator sin-sign" value="+">sin</button>
+      <button type="button" (click)="getTrigonometry('cos')" class="operator cos-sign" value="+">cos</button>
+      <button type="button" (click)="getTrigonometry('tan')" class="operator tan-sign" value="+">tan</button>
+
+
+      <button type="button" (click)="getNumber('7')" value="7">7</button>
+      <button type="button" (click)="getNumber('8')" value="8">8</button>
+      <button type="button" (click)="getNumber('9')" value="9">9</button>
+
+
+      <button type="button" (click)="getNumber('4')" value="4">4</button>
+      <button type="button" (click)="getNumber('5')" value="5">5</button>
+      <button type="button" (click)="getNumber('6')" value="6">6</button>
+
+
+      <button type="button" (click)="getNumber('1')" value="1">1</button>
+      <button type="button" (click)="getNumber('2')" value="2">2</button>
+      <button type="button" (click)="getNumber('3')" value="3">3</button>
+
+
+      <button type="button" (click)="getNumber('0')" value="0">0</button>
+      <button type="button" (click)="getDecimal()" class="decimal" value=".">.</button>
+
+      <button type="button" (click)="clear()" class="all-clear" value="all-clear">AC</button>
+
+      <button type="button" [disabled]="basicForm.get('expresion').hasError('MathExpresionValidation')"
+              (click)="evaluate()" class="equal-sign" value="=">=
+      </button>
+      <button type="button" (click)="random()" class="random" value="all-clear">Random number</button>
+
+
+    </div>
+  </form>
