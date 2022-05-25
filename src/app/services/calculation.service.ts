@@ -57,7 +57,11 @@ export class CalculationService {
     if (matches) {
       for (var place = 0; place < matches.length; place++) {
         const groups = matches[place].match(this.TRIGONOMETRY_MATCH_REGEXP);
-        str = str.replace(matches[place], this.TrigonometryOperation(groups[0], groups[1]).toString());
+        if (groups[1].match(this.TRIGONOMETRY_DETECT_REGEXP)) {
+          groups[1] = this.NormalizeTrigonometry(groups[1]);
+        } else {
+          str = str.replace(matches[place], this.TrigonometryOperation(groups[0], groups[1]).toString());
+        }
       }
     }
     return str;

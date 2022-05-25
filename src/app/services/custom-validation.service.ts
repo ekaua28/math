@@ -18,6 +18,10 @@ export class CustomValidationService {
   constructor() {
   }
 
+  static MatchFunction(value:string){
+    return value.match(CustomValidationService.MATCH_REGEXP);
+  }
+
   /**
    * Function for validation field, return specific flag 'MathExpresionValidation' in case of error
    * @param control: FormControl
@@ -25,7 +29,8 @@ export class CustomValidationService {
    */
   static MathExpresionValidation(control: FormControl) {
     if (control.value) {
-      const matches = control.value.match(CustomValidationService.MATCH_REGEXP);
+      const matches = CustomValidationService.MatchFunction(control.value);
+      console.log(matches)
       return matches ? null : {'MathExpresionValidation': true};
     } else {
       return null;

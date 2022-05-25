@@ -1,5 +1,15 @@
 # Math
 
+Base project for Valid Expression and Evaluate Expression, looks like calculator with history of expresion and result of then
+
+Allowed use only base math operation (+, −, ∗, /,sin, cos, tan)
+
+Priority of operation '(' and ')' is not supported.
+
+Covered by unit test only core logic of validation and evaluation.
+
+Integration and E2E tests not added.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.3.
 
 ## Development server
